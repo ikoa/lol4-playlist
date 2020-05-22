@@ -18,13 +18,6 @@ import axios from 'axios';
 
 const apiKey: string = process.env.REACT_APP_YT_API_KEY || '';
 
-console.log('process.env', process.env);
-console.log('process.env.yotube', process.env.REACT_APP_YT_API_KEY);
-console.log('process.env.node', process.env.NODE_ENV);
-
-
-
-
 const isYouTubeUrl = (value: string): boolean => {
   if (!value) return false;
   const reg = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/
@@ -140,7 +133,7 @@ const App: React.FC = () => {
         yup.object().shape({
           value: yup.string()
           .required('required')
-          .test('is youtube url?', 'は？', isYouTubeUrl),
+          .test('is youtube url?', 'input value is invalid', isYouTubeUrl),
         })}
       validateOnChange
       validateOnBlur
