@@ -16,10 +16,10 @@ import { onCreateItem, onDeleteItem } from "./graphql/subscriptions";
 import { Playlist } from "./components/Playlist";
 import axios from 'axios';
 
-const apiKey: string = process.env.YOUTUBE_API_KEY || '';
+const apiKey: string = process.env.REACT_APP_YT_API_KEY || '';
 
 console.log('process.env', process.env);
-console.log('process.env.yotube', process.env.YOUTUBE_API_KEY);
+console.log('process.env.yotube', process.env.REACT_APP_YT_API_KEY);
 console.log('process.env.node', process.env.NODE_ENV);
 
 
