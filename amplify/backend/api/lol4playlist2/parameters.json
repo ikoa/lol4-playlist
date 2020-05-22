@@ -1,0 +1,5 @@
+{
+    "AppSyncApiName": "lol4playlist2",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false"
+}

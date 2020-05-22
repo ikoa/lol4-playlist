@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-lol4playlist2-dev-130618-authRole",
+            "UnauthRoleArn": "arn:aws:iam::296236503900:role/amplify-lol4playlist2-dev-130618-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::296236503900:role/amplify-lol4playlist2-dev-130618-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "amplify-lol4playlist2-dev-130618-deployment",
+            "UnauthRoleName": "amplify-lol4playlist2-dev-130618-unauthRole",
+            "StackName": "amplify-lol4playlist2-dev-130618",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:296236503900:stack/amplify-lol4playlist2-dev-130618/6dd00090-9b18-11ea-9a0a-0a238b45858e",
+            "AmplifyAppId": "d2tarp0id4cxt9"
+        }
+    }
+}
