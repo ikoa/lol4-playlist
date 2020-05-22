@@ -15,8 +15,10 @@ import { ListItemsQuery, CreateItemMutationVariables } from "./API";
 import { onCreateItem, onDeleteItem } from "./graphql/subscriptions";
 import { Playlist } from "./components/Playlist";
 import axios from 'axios';
-import { config } from 'dotenv';
-config();
+//import { config } from 'dotenv';
+//config();
+const apiKey: string  = process.env.YOUTUBE_API_KEY || '';
+console.log(apiKey);
 
 const isYouTubeUrl = (value: string): boolean => {
   if (!value) return false;
@@ -109,7 +111,6 @@ const App: React.FC = () => {
 
   const handleSubmit = (props: FormValue) => {
     const id = getId(props.value);
-    const apiKey: string  = process.env.YOUTUBE_API_KEY || '';
       axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${id}&key=${apiKey}&part=snippet`)
       .then(res => {
         if (res.data.items[0].snippet.title) {
