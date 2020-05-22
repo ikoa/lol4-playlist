@@ -15,11 +15,16 @@ import { ListItemsQuery, CreateItemMutationVariables } from "./API";
 import { onCreateItem, onDeleteItem } from "./graphql/subscriptions";
 import { Playlist } from "./components/Playlist";
 import axios from 'axios';
-//import { config } from 'dotenv';
-//config();
+
 const apiKey: string = process.env.YOUTUBE_API_KEY || '';
-console.log('process.env.YOUTUBE_API_KEY', process.env.YOUTUBE_API_KEY);
-console.log('process.env._AWS_TEST', process.env._AWS_TEST);
+
+console.log('process.env', process.env);
+console.log('process.env.yotube', process.env.YOUTUBE_API_KEY);
+console.log('process.env.node', process.env.NODE_ENV);
+
+
+
+
 const isYouTubeUrl = (value: string): boolean => {
   if (!value) return false;
   const reg = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/
