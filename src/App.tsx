@@ -14,12 +14,21 @@ import { Item, FormValue, CreateSubscriptionEvent, DeleteSubscriptionEvent } fro
 import { ListItemsQuery, CreateItemMutationVariables } from "./API";
 import { onCreateItem, onDeleteItem } from "./graphql/subscriptions";
 import { Playlist } from "./components/Playlist";
+import axios from 'axios';
+import { config } from 'dotenv';
+config();
 
 const isYouTubeUrl = (value: string): boolean => {
   if (!value) return false;
   const reg = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/
   const result: string[] | null = value.match(reg);
   return result ? true : false;
+};
+
+const getId = (url: string):string => {
+  const result: string = url.split('watch?v=')[1];
+  console.log(result ? result : 'fail: get id');
+  return result;
 };
 
 const useItems = () => {
@@ -99,14 +108,22 @@ const App: React.FC = () => {
   const classes = useStyles();
 
   const handleSubmit = (props: FormValue) => {
-    const newItem: CreateItemMutationVariables = {
-      input: {
-        title: props.value,
-        url: props.value,
-        img: props.value,
-      }
-    };
-    API.graphql(graphqlOperation(createItem, newItem));
+    const id = getId(props.value);
+    const apiKey: string  = process.env.YOUTUBE_API_KEY || '';
+      axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${id}&key=${apiKey}&part=snippet`)
+      .then(res => {
+        if (res.data.items[0].snippet.title) {
+          // res.data.items[0].snippet.title;
+          const newItem: CreateItemMutationVariables = {
+            input: {
+              title: res.data.items[0].snippet.title,
+              url: props.value,
+              img: res.data.items[0].snippet.thumbnails.default.url,
+            }
+          };
+          API.graphql(graphqlOperation(createItem, newItem));
+        }
+      }).catch(err => console.log(err));
   };
 
   return (
@@ -116,6 +133,7 @@ const App: React.FC = () => {
       validationSchema={
         yup.object().shape({
           value: yup.string()
+          .required('required')
           .test('is youtube url?', 'は？', isYouTubeUrl),
         })}
       validateOnChange
@@ -125,8 +143,12 @@ const App: React.FC = () => {
           return (<>
           <Container maxWidth="sm">
             <Box my={4}>
-              <Typography variant="h1" component="h1" gutterBottom>
-                lol4-discord default playlist
+              <Typography variant="h2" component="h2" gutterBottom>
+                lol4-discord
+                <br />
+                default
+                <br />
+                playlist
               </Typography>
               <ProTip />
               <div className={classes.input}>

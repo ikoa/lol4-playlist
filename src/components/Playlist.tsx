@@ -41,10 +41,10 @@ const MusicItem: React.FC<{item: Item}> = ({
     <>
       <ListItem>
         <ListItemAvatar>
-          <Avatar alt="?" src={""} />
+          <Avatar alt="?" src={item.img} />
         </ListItemAvatar>
         <ListItemText
-          primary={<Link href={""} target="_blank">{item.title}</Link>}
+          primary={<Link href={item.url} target="_blank">{item.title}</Link>}
         />
         <ListItemSecondaryAction>
           <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(item.id)}>

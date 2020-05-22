@@ -6,7 +6,6 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { FormikProps } from 'formik';
 import { FormValue } from '../types';
 
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     input: {
