@@ -12,6 +12,9 @@ export const createItem = /* GraphQL */ `
       title
       url
       img
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -27,6 +30,9 @@ export const updateItem = /* GraphQL */ `
       title
       url
       img
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -42,6 +48,9 @@ export const deleteItem = /* GraphQL */ `
       title
       url
       img
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }

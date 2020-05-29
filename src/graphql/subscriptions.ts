@@ -9,6 +9,9 @@ export const onCreateItem = /* GraphQL */ `
       title
       url
       img
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -21,6 +24,9 @@ export const onUpdateItem = /* GraphQL */ `
       title
       url
       img
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -33,6 +39,9 @@ export const onDeleteItem = /* GraphQL */ `
       title
       url
       img
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }

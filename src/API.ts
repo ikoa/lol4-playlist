@@ -7,6 +7,7 @@ export type CreateItemInput = {
   title: string,
   url: string,
   img: string,
+  _version?: number | null,
 };
 
 export type ModelItemConditionInput = {
@@ -63,10 +64,12 @@ export type UpdateItemInput = {
   title?: string | null,
   url?: string | null,
   img?: string | null,
+  _version?: number | null,
 };
 
 export type DeleteItemInput = {
   id?: string | null,
+  _version?: number | null,
 };
 
 export type ModelItemFilterInput = {
@@ -107,6 +110,9 @@ export type CreateItemMutation = {
     title: string,
     url: string,
     img: string,
+    _version: number,
+    _deleted: boolean | null,
+    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -124,6 +130,9 @@ export type UpdateItemMutation = {
     title: string,
     url: string,
     img: string,
+    _version: number,
+    _deleted: boolean | null,
+    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -141,8 +150,38 @@ export type DeleteItemMutation = {
     title: string,
     url: string,
     img: string,
+    _version: number,
+    _deleted: boolean | null,
+    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type SyncItemsQueryVariables = {
+  filter?: ModelItemFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncItemsQuery = {
+  syncItems:  {
+    __typename: "ModelItemConnection",
+    items:  Array< {
+      __typename: "Item",
+      id: string,
+      title: string,
+      url: string,
+      img: string,
+      _version: number,
+      _deleted: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+    startedAt: number | null,
   } | null,
 };
 
@@ -157,6 +196,9 @@ export type GetItemQuery = {
     title: string,
     url: string,
     img: string,
+    _version: number,
+    _deleted: boolean | null,
+    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -177,10 +219,14 @@ export type ListItemsQuery = {
       title: string,
       url: string,
       img: string,
+      _version: number,
+      _deleted: boolean | null,
+      _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
     nextToken: string | null,
+    startedAt: number | null,
   } | null,
 };
 
@@ -191,6 +237,9 @@ export type OnCreateItemSubscription = {
     title: string,
     url: string,
     img: string,
+    _version: number,
+    _deleted: boolean | null,
+    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -203,6 +252,9 @@ export type OnUpdateItemSubscription = {
     title: string,
     url: string,
     img: string,
+    _version: number,
+    _deleted: boolean | null,
+    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -215,6 +267,9 @@ export type OnDeleteItemSubscription = {
     title: string,
     url: string,
     img: string,
+    _version: number,
+    _deleted: boolean | null,
+    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
   } | null,
